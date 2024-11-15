@@ -180,3 +180,4 @@ pyrightconfig.json
 
 # Folders
 app/config.py
+*.jpg
