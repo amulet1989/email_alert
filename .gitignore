@@ -181,3 +181,4 @@ pyrightconfig.json
 # Folders
 app/config.py
 *.jpg
+alert_secuence.gif

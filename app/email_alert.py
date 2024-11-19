@@ -1,18 +1,12 @@
 import smtplib
-from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-from app.config import SMTP_SERVER, SMTP_PORT, EMAIL_USER, EMAIL_PASSWORD
+from app.config import EMAIL_USER, EMAIL_PASSWORD
 
 
 def send_email_alert(to_emails, attachment_path):
-    import smtplib
-    from email.mime.text import MIMEText
-    from email.mime.multipart import MIMEMultipart
-    from email.mime.base import MIMEBase
-    from email import encoders
-    from app.config import EMAIL_USER, EMAIL_PASSWORD
 
     subject = "Alerta de robo detectada"
     body = """
@@ -36,14 +30,14 @@ def send_email_alert(to_emails, attachment_path):
     """
 
     msg = MIMEMultipart()
-    msg['From'] = EMAIL_USER
-    msg['To'] = ", ".join(to_emails)
-    msg['Subject'] = subject
+    msg["From"] = EMAIL_USER
+    msg["To"] = ", ".join(to_emails)
+    msg["Subject"] = subject
 
     # Agrega el cuerpo del correo
-    msg.attach(MIMEText(body, 'html'))
+    msg.attach(MIMEText(body, "html"))
 
-    # Adjunta el archivo
+    # Adjunta el archivo GIF
     attachment_name = attachment_path.split("/")[-1]
     with open(attachment_path, "rb") as attachment:
         part = MIMEBase("application", "octet-stream")
