@@ -4,7 +4,8 @@ import cv2
 class CameraStream:
     def __init__(self, rtsp_url):
         self.rtsp_url = rtsp_url
-        self.cap = cv2.VideoCapture(rtsp_url)
+        self.cap = cv2.VideoCapture(rtsp_url, cv2.CAP_FFMPEG)
+        self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
     def get_frame(self):
         if not self.cap.isOpened():
